@@ -55,12 +55,12 @@ func (v Value) Int() int {
 	return 0
 }
 
-//Returns if the value contains any commas, perhaps indicating that it's a comma delineated array.
+//Returns if the value contains any commas, perhaps indicating that it's a comma delimited array.
 func (v Value) IsCommaArray() bool {
 	return strings.Contains(v[0], ",")
 }
 
-//Returns the value as a comma delineated array. Each output is trimmed.
+//Returns the value as a comma delimited array. Each output is trimmed.
 func (v Value) CommaArray() (out []string) {
 	out = strings.Split(v[0], ",")
 	for i := range out {
@@ -69,12 +69,12 @@ func (v Value) CommaArray() (out []string) {
 	return
 }
 
-//Returns if the value contains any semicolons, perhaps indicating that it's a semicolon delineated array.
+//Returns if the value contains any semicolons, perhaps indicating that it's a semicolon delimited array.
 func (v Value) IsSemicolonArray() bool {
 	return strings.Contains(v[0], ";")
 }
 
-//Returns the value as a semicolon delineated array. Each output is trimmed.
+//Returns the value as a semicolon delimited array. Each output is trimmed.
 func (v Value) SemicolonArray() (out []string) {
 	out = strings.Split(v[0], ";")
 	for i := range out {
