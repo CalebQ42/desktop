@@ -8,6 +8,10 @@ type File struct {
 	order []string
 }
 
+func (f File) Sections() []string {
+	return f.order
+}
+
 //Returns a Section with the key=value pairs that appear before the first section.
 func (f File) PreSection() *Section {
 	return f.pre

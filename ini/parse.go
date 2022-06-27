@@ -8,10 +8,6 @@ import (
 	"strings"
 )
 
-var (
-	ErrEmptyName = errors.New("empty section name")
-)
-
 func Parse(r io.Reader) (f *File, err error) {
 	defer func() {
 		if clr, ok := r.(io.Closer); ok {

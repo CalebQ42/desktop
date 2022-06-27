@@ -13,6 +13,11 @@ func NewSection() *Section {
 	}
 }
 
+//The keys with values present in the section.
+func (s Section) Keys() []string {
+	return s.order
+}
+
 //If the key is not present, adds the key with the given value.
 //If the key is present, add the given value as an additional line (MultivalueArray)
 func (s *Section) AddValue(key string, value string) {

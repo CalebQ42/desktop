@@ -20,6 +20,16 @@ func (v Value) String() string {
 	return v[0]
 }
 
+//Returns if value is a bool value (only true and false are allowed). Case insensitive.
+func (v Value) IsBool() bool {
+	return strings.ToLower(v[0]) == "true" || strings.ToLower(v[0]) == "false"
+}
+
+//Returns if value == "true". Other values returns false. Case insensitive.
+func (v Value) Bool() bool {
+	return strings.ToLower(v[0]) == "true"
+}
+
 //Returns if there are multiple value with this same key.
 func (v Value) IsMultivalueArray() bool {
 	return len(v) > 1
