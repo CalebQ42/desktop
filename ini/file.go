@@ -8,23 +8,31 @@ type File struct {
 	order []string
 }
 
+func NewFile() *File {
+	return &File{
+		pre:   NewSection(),
+		m:     make(map[string]*Section),
+		order: make([]string, 0),
+	}
+}
+
 func (f File) Sections() []string {
 	return f.order
 }
 
-//Returns a Section with the key=value pairs that appear before the first section.
+// Returns a Section with the key=value pairs that appear before the first section.
 func (f File) PreSection() *Section {
 	return f.pre
 }
 
-//Does the File have the given section.
+// Does the File have the given section.
 func (f File) HasSection(name string) bool {
 	_, ok := f.m[name]
 	return ok
 }
 
-//The section with the given name.
-//If the section is not already present, a new section is created.
+// The section with the given name.
+// If the section is not already present, a new section is created.
 func (f *File) Section(name string) *Section {
 	v, ok := f.m[name]
 	if !ok {
@@ -33,7 +41,7 @@ func (f *File) Section(name string) *Section {
 	return v
 }
 
-//Deletes the given key from the section.
+// Deletes the given key from the section.
 func (f *File) DeleteSection(name string) {
 	if f.HasSection(name) {
 		delete(f.m, name)
