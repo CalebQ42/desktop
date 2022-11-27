@@ -14,7 +14,7 @@ func Parse(r io.Reader) (f *File, err error) {
 			clr.Close()
 		}
 	}()
-	f = new(File)
+	f = NewFile()
 	rdr := bufio.NewReader(r)
 	var num int
 	var line, trimLine string
