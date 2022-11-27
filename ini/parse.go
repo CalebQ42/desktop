@@ -3,6 +3,7 @@ package ini
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"io"
 	"strconv"
 	"strings"
@@ -22,11 +23,15 @@ func Parse(r io.Reader) (f *File, err error) {
 	curSectionName := ""
 	for {
 		num++
+		fmt.Println(num)
 		line, err = rdr.ReadString('\n')
-		if err != nil && line != "" {
-			break
-		} else if err != nil {
+		if err == io.EOF && line == "" {
 			err = nil
+			break
+		} else if err == io.EOF && line != "" {
+			err = nil
+		} else if err != nil {
+			return
 		}
 		line = strings.TrimSuffix(line, "\n")
 		trimLine = strings.TrimSpace(line)
@@ -68,6 +73,11 @@ func Parse(r io.Reader) (f *File, err error) {
 			return nil, errors.New("ini.Parse: line " + strconv.Itoa(num) + ": invalid line")
 		}
 		key, value := line[:ind], line[ind+1:]
+		if value[0] == '"' || value[0] == '\'' {
+			if value[0] == value[len(value)-1] {
+				value = strings.Trim(value, string(value[0]))
+			}
+		}
 		curSection.AddValue(key, value)
 	}
 	if curSectionName == "" {
