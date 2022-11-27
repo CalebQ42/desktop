@@ -3,7 +3,6 @@ package ini
 import (
 	"bufio"
 	"errors"
-	"fmt"
 	"io"
 	"strconv"
 	"strings"
@@ -23,7 +22,6 @@ func Parse(r io.Reader) (f *File, err error) {
 	curSectionName := ""
 	for {
 		num++
-		fmt.Println(num)
 		line, err = rdr.ReadString('\n')
 		if err == io.EOF && line == "" {
 			err = nil
