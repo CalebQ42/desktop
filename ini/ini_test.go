@@ -20,4 +20,7 @@ func TestIni(t *testing.T) {
 	if f.PreSection().Value("notATest").String() != "Hello my name is george" {
 		t.Fatal("notATest not correct:", f.PreSection().Value("notATest").String())
 	}
+	if f.Sections()[0] != "Hello" || f.Sections()[1] != "part 2" {
+		t.Fatal("sections not correct:", f.Sections())
+	}
 }

@@ -58,6 +58,7 @@ func Parse(r io.Reader) (f *File, err error) {
 				f.pre = curSection
 			} else {
 				f.m[curSectionName] = curSection
+				f.order = append(f.order, curSectionName)
 			}
 			curSectionName = strings.Trim(trimLine, "[]")
 			if curSectionName == "" {
@@ -82,6 +83,7 @@ func Parse(r io.Reader) (f *File, err error) {
 		f.pre = curSection
 	} else {
 		f.m[curSectionName] = curSection
+		f.order = append(f.order, curSectionName)
 	}
 	return
 }
